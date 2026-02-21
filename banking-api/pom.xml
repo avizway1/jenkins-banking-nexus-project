@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- ============================================================
+       banking-api — The "Bank Teller Counter" module.
+       This is the customer-facing layer that uses banking-core
+       (fetched from Nexus) to serve customers.
+
+       Analogy: The teller doesn't know HOW interest is calculated —
+       they just use the rule book (AccountService JAR from Nexus).
+  ============================================================ -->
+
+  <parent>
+    <groupId>com.banking</groupId>
+    <artifactId>banking-app</artifactId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>banking-api</artifactId>
+  <packaging>jar</packaging>
+  <name>Banking API - Customer Facing Layer</name>
+
+  <dependencies>
+    <!-- ============================================================
+         Pulling banking-core from Nexus — NOT from local source.
+         This proves the Nexus warehouse concept:
+         banking-api doesn't recompile core; it picks the JAR from Nexus.
+    ============================================================ -->
+    <dependency>
+      <groupId>com.banking</groupId>
+      <artifactId>banking-core</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+
+    <!-- JUnit 5 for unit testing -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>5.10.0</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- Surefire plugin — runs JUnit 5 tests during mvn test -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.1.2</version>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>
