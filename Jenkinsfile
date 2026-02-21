@@ -9,7 +9,7 @@ pipeline {
     environment {
         NEXUS_CREDENTIALS_ID  = 'nexus'
         NEXUS_URL             = 'http://13.49.243.146:8081'
-        TOMCAT_CREDENTIALS_ID = 'tomcat-server'                        // Jenkins credential ID for Tomcat
+        TOMCAT_CREDENTIALS_ID = 'tomcat'                        // Jenkins credential ID for Tomcat
         TOMCAT_URL            = 'http://172.31.30.24:8080'  // Replace with your Tomcat EC2 IP/hostname
         APP_CONTEXT_PATH      = '/banking-app'                  // URL context: http://host:8080/banking-app
     }
