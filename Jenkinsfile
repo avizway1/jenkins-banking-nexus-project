@@ -108,18 +108,24 @@ pipeline {
 
         // ════════════════════════════════════════════════════════════════
         // Stage 6 — SonarQube Code Analysis
-        //   Scans banking-api source code for:
+        //   Scans ALL modules (banking-core + banking-api) for:
         //     • Bugs & code smells
         //     • Security vulnerabilities
         //     • Code coverage (from JUnit results)
+        //
+        //   ⚠️  IMPORTANT: sonar:sonar MUST run from the ROOT POM (no -pl flag).
+        //   The SonarQube Maven plugin requires a "top level project" context
+        //   to understand the full multi-module structure. Using -pl causes:
+        //   "Maven session does not declare a top level project" error.
+        //
         //   Requires: SonarQube server configured in Jenkins as 'sonarqube'
         // ════════════════════════════════════════════════════════════════
         stage('SonarQube Analysis') {
             steps {
-                echo '🔍 Stage 6: Running SonarQube code analysis on banking-api...'
+                echo '🔍 Stage 6: Running SonarQube code analysis (all modules)...'
                 withSonarQubeEnv('sonarqube') {
                     sh """
-                        mvn -pl banking-api sonar:sonar \
+                        mvn sonar:sonar \
                             -Dsonar.projectKey=banking-app \
                             -Dsonar.projectName='Banking Application' \
                             -Dsonar.token=${SONAR_TOKEN}
