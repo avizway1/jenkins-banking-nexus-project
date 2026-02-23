@@ -41,11 +41,11 @@
   <distributionManagement>
     <snapshotRepository>
       <id>nexus-snapshots</id>
-      <url>http://172.31.43.52:8081/repository/banking-snapshots/</url>
+      <url>http://172.31.29.20:8081/repository/banking-snapshots/</url>
     </snapshotRepository>
     <repository>
       <id>nexus-releases</id>
-      <url>http://172.31.43.52:8081/repository/banking-releases/</url>
+      <url>http://172.31.29.20:8081/repository/banking-releases/</url>
     </repository>
   </distributionManagement>
 
